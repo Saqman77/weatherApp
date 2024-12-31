@@ -1,3 +1,4 @@
+import Center from './Center'
 import LeftColumn from './Left-column'
 import './main.scss'
 import RightColumn from './Right-column'
@@ -10,6 +11,7 @@ const Main = () => {
       </div>
       <div className="bottom-wrapper">
         <LeftColumn />
+        <Center />
         <RightColumn />
       </div>
     </div>
