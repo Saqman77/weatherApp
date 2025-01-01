@@ -3,14 +3,14 @@ import './App.scss'
 import Header from './components/header/Header'
 import TopColumn from './components/cards/Top-column'
 import Main from './components/main/Main'
-import { useTheme } from './utils/Theme-context'
+import { useCity, useTheme } from './utils/Theme-context'
 import { useWeatherData } from './utils/UseWeatherData'
 import { processWeatherData } from './utils/Process-data'
 
 
 const App = () => {
 
-  const [city, setCity] = useState<string>("London");
+  const { city } = useCity();
   const { weatherData, error, loading, refetch } = useWeatherData(city);
   const processedData = weatherData ? processWeatherData(weatherData) : null;
   const nextDaysData: any = processedData?.nextDaysData || [];

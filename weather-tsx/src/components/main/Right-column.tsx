@@ -46,7 +46,11 @@ const RightColumn = () => {
                             <stop offset="100%" stopColor="#f59522" />
                         </linearGradient>
                     </defs>
-                    <circle cx="80" cy="80" r="70" stroke="url(#GradientColor)" strokeWidth="10" fill="none" strokeLinecap="round" />
+                    <circle cx="80" cy="80" r="70" stroke="url(#GradientColor)" strokeWidth="10" fill="none" strokeLinecap="round"
+                        style={{
+                            strokeDasharray: '472',
+                        }}
+                    />
                 </svg>
             </div>
         </div>
