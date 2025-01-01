@@ -69,6 +69,7 @@
 }
 .leftContent p{
     margin: auto 0 auto auto;
+    font-size: 1rem;
 }
 
 // .uv-container{
@@ -139,6 +140,7 @@
     height: min-content;
     justify-content: center;
     align-items: center;
+    text-wrap: nowrap;
 }
 .pill h2{
     font-size: 1rem;

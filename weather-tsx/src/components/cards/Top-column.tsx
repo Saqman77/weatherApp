@@ -2,8 +2,25 @@ import { useEffect } from 'react';
 import Card from './Card'
 import './cards.scss'
 import { useTheme } from '../../utils/Theme-context';
+interface MainProps {
+  data: any; // Replace 'any' with the appropriate type if known
+}
 
-const TopColumn = () => {
+const TopColumn = ({ data }: MainProps): JSX.Element => {
+
+  const formatDateTime = (dt_txt: string) => {
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  
+    const date = new Date(dt_txt); // Convert to a Date object
+    const day = daysOfWeek[date.getDay()]; // Get day of the week
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+  
+    // Format time to 12-hour clock with AM/PM
+    const formattedTime = `${hours % 12 || 12}:${minutes.toString().padStart(2, "0")} ${hours >= 12 ? "PM" : "AM"}`;
+  
+      return { day, time: formattedTime };
+    }
 
 
   const { lightTheme } = useTheme()
@@ -29,6 +46,7 @@ const TopColumn = () => {
 
   return (
     <div className='column'
+    {...data}
     style={lightTheme ? {backgroundColor: '#ccc', color: 'black', boxShadow: `rgba(0, 0, 0, 0.15) 6px 6px 10px -1px,
       rgba(255, 255, 255, 0.7) -6px -6px 10px -1px,
        inset 0 3px 10px 0 rgb(0 0 0 / 55%)

@@ -1,12 +1,20 @@
 import image from '../../assets/icons/Sunnny Windy Icon 1.svg'
 
-const Center = () => {
+interface CenterProps {
+    day: string;
+    weather: string;
+    temp: number;
+    image: string;
+    time: string;
+}
+
+const Center: React.FC<CenterProps> = ({ day, weather, temp, image: icon, time }) => {
 
     const data = {
-        day: 'Monday',
-        time: '12:30pm',
-        temp: '12°C',
-        weather: 'Weather Description',
+        day,
+        time,
+        temp,
+        weather,
 
     }
 
@@ -20,7 +28,7 @@ const Center = () => {
                 <h2>{data.time}</h2>
             </div>
             <div className="pill center-temp">
-                <p>{data.temp} </p>
+                <p>{data.temp}°C </p>
             </div>
         </div>
         <div className="weather-icon">
@@ -28,7 +36,7 @@ const Center = () => {
                     <img src={image} alt="icon" className='c-icon' />
             </div>
             <div className="icon-day">
-                <h2>{data.day}</h2>
+                <h2>{data.weather}</h2>
             </div>
         </div>
     </div>
