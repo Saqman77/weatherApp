@@ -1,15 +1,22 @@
 import { useTheme } from '../../utils/Theme-context'
-import { MainWeatherData, WeatherEntry, WeatherResponse, Wind } from '../../weather-data'
+import {  MainWeatherData, WeatherEntry, WeatherResponse, Wind } from '../../weather-data'
 import Center from './Center'
 import LeftColumn from './Left-column'
 import './main.scss'
 import RightColumn from './Right-column'
 
-interface MainProps {
-  data: any; // Replace 'any' with the appropriate type if known
+type MainProps = {
+  data: WeatherEntry;
+  loading: boolean;
+  refetch: () => Promise<void>;
+  error: string | null;
+  
 }
 
-const Main = ({ data }: MainProps): JSX.Element => {
+
+const Main = ({ data, loading, refetch,
+  error, ...props
+ }: MainProps): JSX.Element => {
 
   const formatDateTime = (dt_txt: string) => {
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];

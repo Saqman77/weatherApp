@@ -3,7 +3,7 @@ import image from '../../assets/icons/Sunnny Windy Icon 1.svg'
 interface CenterProps {
     day: string;
     weather: string;
-    temp: number;
+    temp: string;
     image: string;
     time: string;
 }

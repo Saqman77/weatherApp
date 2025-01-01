@@ -20,7 +20,7 @@ export interface WeatherResponse {
   }
   
   export interface MainWeatherData {
-    temp: number;
+    temp: number | string;
     feels_like: number;
     temp_min: number;
     temp_max: number;
@@ -70,4 +70,23 @@ export interface WeatherResponse {
   export interface Coordinates {
     lat: number;
     lon: number;
+  }
+
+  export interface WeatherItem {
+    dt: number;
+    dt_txt: string;
+    main: {
+      temp: string | number;
+    };
+    weather: {
+      description: string;
+    }[];
+    wind: string | number | undefined;
+  }
+  
+  export interface MainProps {
+    error: string | null;
+    loading: boolean;
+    refetch: () => Promise<void>;
+    data: any;
   }

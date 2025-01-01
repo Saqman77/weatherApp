@@ -1,66 +1,83 @@
 import { useEffect } from 'react';
-import Card from './Card'
-import './cards.scss'
+import Card from './Card';
+import './cards.scss';
 import { useTheme } from '../../utils/Theme-context';
-interface MainProps {
-  data: any; // Replace 'any' with the appropriate type if known
-}
+import { MainProps, WeatherItem } from '../../weather-data';
 
-const TopColumn = ({ data }: MainProps): JSX.Element => {
+const TopColumn = ({ data, error }: MainProps): JSX.Element => {
+  const { lightTheme } = useTheme();
 
   const formatDateTime = (dt_txt: string) => {
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const date = new Date(dt_txt);
   
-    const date = new Date(dt_txt); // Convert to a Date object
-    const day = daysOfWeek[date.getDay()]; // Get day of the week
+    const day = daysOfWeek[date.getDay()];
     const hours = date.getHours();
     const minutes = date.getMinutes();
   
-    // Format time to 12-hour clock with AM/PM
-    const formattedTime = `${hours % 12 || 12}:${minutes.toString().padStart(2, "0")} ${hours >= 12 ? "PM" : "AM"}`;
+    // Correct handling of 12-hour format
+    const formattedHour = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours;
+    const period = hours >= 12 ? "PM" : "AM";
+    const formattedTime = `${formattedHour}:${minutes.toString().padStart(2, "0")} ${period}`;
   
-      return { day, time: formattedTime };
-    }
+    return { day, time: formattedTime };
+  };
 
-
-  const { lightTheme } = useTheme()
-
-  // get height of Cardcontainer  and set it to the height of the column
   useEffect(() => {
     const cardContainer = document.querySelector('.Cardcontainer') as HTMLElement;
     const column = document.querySelector('.column') as HTMLElement;
 
     if (cardContainer && column) {
-      column.style.height = cardContainer.clientHeight + 'px';
+      column.style.height = `${cardContainer.clientHeight}px`;
     }
 
-    // Optional: Add cleanup if needed
     return () => {
       if (column) {
-        column.style.height = ''; // Reset the height if necessary
+        column.style.height = '';
       }
     };
-  }, []); // Empty dependency array ensures it runs once after mount
+  }, []);
 
-
+  if (error) {
+    return <div className="error-message">{error}</div>;
+  }
 
   return (
-    <div className='column'
-    {...data}
-    style={lightTheme ? {backgroundColor: '#ccc', color: 'black', boxShadow: `rgba(0, 0, 0, 0.15) 6px 6px 10px -1px,
-      rgba(255, 255, 255, 0.7) -6px -6px 10px -1px,
-       inset 0 3px 10px 0 rgb(0 0 0 / 55%)
-   `,} : {backgroundColor: '#36363a', color: 'white'}}
+    <div
+      className="column"
+      style={
+        lightTheme
+          ? {
+              backgroundColor: '#ccc',
+              color: 'black',
+              boxShadow: `rgba(0, 0, 0, 0.15) 6px 6px 10px -1px,
+                          rgba(255, 255, 255, 0.7) -6px -6px 10px -1px,
+                          inset 0 3px 10px 0 rgb(0 0 0 / 55%)`,
+            }
+          : {
+              backgroundColor: '#36363a',
+              color: 'white',
+            }
+      }
     >
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
+      {data && data.length > 0 ? (
+        data.map((item: WeatherItem) => {
+          const { day, time } = formatDateTime(item.dt_txt);
+          return (
+            <Card
+              key={item.dt}
+              day={day}
+              time={time}
+              temp={item.main.temp.toString()}
+              weather={item.weather[0].description}
+            />
+          );
+        })
+      ) : (
+        <p>No weather data available.</p>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default TopColumn
+export default TopColumn;

@@ -1,15 +1,26 @@
 import './cards.scss'
 import image from '../../assets/icons/Sunnny Windy Icon 1.svg'
 import { useTheme } from '../../utils/Theme-context'
-const Card = () => {
+
+interface CenterProps {
+  day: string;
+  weather: string;
+  temp: string;
+  time: string;
+}
+
+
+const Card: React.FC<CenterProps> = ({day, time, temp, weather}) => {
+
+  
 
   const { lightTheme } = useTheme()
 
   const data = {
-    day: 'Monday',
-    time: '12:30pm',
-    temp: '12°C',
-    weather: 'Weather Description'
+    day,
+    time,
+    temp,
+    weather
   }
 
 
@@ -27,7 +38,7 @@ const Card = () => {
                   <div className="icon">
                       <img src={image} alt="" />
                   </div>
-                  <p>{data.temp}</p>
+                  <p>{data.temp} °C </p>
               </div>
             <div className='weather'>
                 <h2>Weather</h2>

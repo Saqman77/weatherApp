@@ -6,13 +6,14 @@ import Main from './components/main/Main'
 import { useTheme } from './utils/Theme-context'
 import { useWeatherData } from './utils/UseWeatherData'
 import { processWeatherData } from './utils/Process-data'
+import { WeatherItem } from './weather-data'
 
 const App = () => {
 
   const [city, setCity] = useState<string>("London");
   const { weatherData, error, loading, refetch } = useWeatherData(city);
   const processedData = weatherData ? processWeatherData(weatherData) : null;
-  const nextDaysData = processedData?.nextDaysData;
+  const nextDaysData: any = processedData?.nextDaysData || [];
   const currentDayData = processedData?.currentDayData[0];
     useEffect(() => {
       console.log(processedData?.currentDayData[0]);
@@ -26,16 +27,16 @@ const App = () => {
     >
       <Header />
       <TopColumn
-
+        data={nextDaysData}
         error={error}
         loading={loading}
         refetch={refetch}
       />
       <Main
         data={currentDayData}
-        // error={error}
-        // loading={loading}
-        // refetch={refetch}
+        loading={loading}
+        refetch={refetch}
+        error={error}
       />
     </div>
   )
