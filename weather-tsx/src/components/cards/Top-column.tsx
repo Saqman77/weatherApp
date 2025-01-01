@@ -11,6 +11,13 @@ interface Props {
   error: string | null;
   loading: boolean;
   refetch: () => Promise<void>;
+  day: string;
+  time: string;
+  temp: string;
+  weather: string;
+  icon: string;
+  wind?: string;
+  speed?: string;
 }
 
 
@@ -95,7 +102,7 @@ const TopColumn = ({ data, error, loading,  }: Props): JSX.Element => {
             time="N/A"
             temp="N/A"
             weather="N/A"
-            wind='N/A'
+            wind={{ speed: 'N/A', gust: 'N/A', deg: 'N/A' }}
             speed='N/A'
             icon={iconMap['01d']}
           />

@@ -1,3 +1,4 @@
+import { iconMap } from '../../utils/icon'
 import { useTheme } from '../../utils/Theme-context'
 import {  MainWeatherData, WeatherEntry, WeatherResponse, Wind } from '../../weather-data'
 import Center from './Center'
@@ -57,7 +58,7 @@ const Main = ({ data, loading, refetch,
         weather={!loading?(data?.weather[0].description):('loading....')}
         day={!loading?(formatDateTime(data?.dt_txt).day):('loading....')}
         temp={!loading?(data?.main?.temp.toString()):('loading....')}
-        image={!loading?(data?.weather[0].icon):('loading....')}
+        image={!loading?(iconMap[data?.weather[0].icon]):('loading....')}
         time={!loading?(formatDateTime(data?.dt_txt).time):('loading....')}
         />
         <RightColumn />

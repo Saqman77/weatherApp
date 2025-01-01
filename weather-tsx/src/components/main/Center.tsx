@@ -1,4 +1,4 @@
-import image from '../../assets/icons/Sunnny Windy Icon 1.svg'
+import def from '../../assets/icons/Sunnny Windy Icon 1.svg'
 
 interface CenterProps {
     day: string;
@@ -8,7 +8,7 @@ interface CenterProps {
     time: string;
 }
 
-const Center: React.FC<CenterProps> = ({ day, weather, temp, image: icon, time }) => {
+const Center: React.FC<CenterProps> = ({ day, weather, temp, image, time }) => {
 
     const data = {
         day,

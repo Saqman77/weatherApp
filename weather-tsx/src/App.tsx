@@ -31,6 +31,11 @@ const App = () => {
         error={error}
         loading={loading}
         refetch={refetch}
+        day={!loading?(processedData?.nextDaysData[0].day):('loading....')}
+        time={!loading?(processedData?.nextDaysData[0].time):('loading....')}
+        temp={!loading?(processedData?.nextDaysData[0].temp):('loading....')}
+        weather={!loading?(processedData?.nextDaysData[0].weather):('loading....')}
+        icon={!loading?(processedData?.nextDaysData[0].icon):('loading....')}
         
       />
       <Main
