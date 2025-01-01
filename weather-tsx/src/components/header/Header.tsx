@@ -27,7 +27,7 @@ const Header = () => {
       <div className="search-wrapper">
         <input type="text" placeholder="Search for city" className='search' 
         style={lightTheme?{boxShadow:'-5px -3px 6px 0 rgb(255 255 255), inset 2px 3px 4px 1px rgb(0 0 0 / 28%), 2px 3px 10px 0 rgb(0 0 0 / 58%)'}
-        :{boxShadow:'inset 0 3px 10px 0 rgb(0 0 0), -2px -3px 4px 1px rgb(231 228 228 / 29%)'}}
+        :{boxShadow:'inset 0 3px 5px 0 rgb(0 0 0), -2px -3px 4px 1px rgb(231 228 228 / 29%)'}}
         />
         <button 
         style={{
@@ -50,7 +50,7 @@ const Header = () => {
           <input type="checkbox" onClick={toggleTheme} />
           <span className="slider-round"
             style={lightTheme?{boxShadow:'-5px -3px 6px 0 rgb(255 255 255), inset 2px 3px 4px 1px rgb(0 0 0 / 28%), 2px 3px 10px 0 rgb(0 0 0 / 58%)'}
-            :{boxShadow:'inset 0 3px 10px 0 rgb(0 0 0), -2px -3px 4px 1px rgb(231 228 228 / 29%)'}}
+            :{boxShadow:'inset 0 3px 5px 0 rgb(0 0 0), -2px -3px 4px 1px rgb(231 228 228 / 29%)'}}
           ></span>
         </label>
       </div>

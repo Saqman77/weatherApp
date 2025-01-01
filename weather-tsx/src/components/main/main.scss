@@ -145,6 +145,16 @@
     font-weight: 700;
 }
 
+.uv-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    // box-shadow: inset 1px 1px 7px 2px #00000017;
+    padding: 5px 10px;
+    // border-radius: 8px;
+}
+
 .uv-wrapper{
     position: relative;
     margin-top: 20px;
