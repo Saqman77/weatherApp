@@ -8,7 +8,7 @@ interface LeftColumnProps {
     airPressure: string;
 }
 
-const LeftColumn = ({ wind, humidity, visibility, airPressure }: LeftColumnProps) =>{
+const LeftColumn = ({ wind, humidity, visibility, airPressure, }: LeftColumnProps) =>{
 
     const { lightTheme } = useTheme()
 

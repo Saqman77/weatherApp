@@ -1,5 +1,5 @@
 import './cards.scss'
-import image from '../../assets/icons/Sunnny Windy Icon 1.svg'
+// import image from '../../assets/icons/Sunnny Windy Icon 1.svg'
 import { useTheme } from '../../utils/Theme-context'
 
 interface CenterProps {
@@ -7,21 +7,17 @@ interface CenterProps {
   weather: string;
   temp: string;
   time: string;
+  wind: string;
+  speed: string;
+  icon: string;
 }
 
 
-const Card: React.FC<CenterProps> = ({day, time, temp, weather}) => {
+const Card: React.FC<CenterProps> = ({day, time, temp, weather, wind,icon}) => {
 
   
 
   const { lightTheme } = useTheme()
-
-  const data = {
-    day,
-    time,
-    temp,
-    weather
-  }
 
 
   return (
@@ -30,19 +26,19 @@ const Card: React.FC<CenterProps> = ({day, time, temp, weather}) => {
           style={lightTheme ? {backgroundColor: '#ccc', color: 'black', boxShadow:'inset 3px 2px 15px 2px rgb(0 0 0 / 1%), 9px 7px 18px 0 rgb(0 0 0 / 32%)'} : {backgroundColor: '#36363a', color: 'white', boxShadow:'box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5)' }}
         >
             <div className='card-header'>
-              <h2>{data.day}</h2>
-              <p>{data.time}</p>
+              <h2>{day}</h2>
+              <p>{time}</p>
             </div>
             <div className='card-body'>
               <div className='temp'>
                   <div className="icon">
-                      <img src={image} alt="" />
+                      <img src={icon} alt="icon" />
                   </div>
-                  <p>{data.temp} °C </p>
+                  <p>{temp} °C </p>
               </div>
             <div className='weather'>
-                <h2>Weather</h2>
-                <p>{data.weather}</p>
+                <h2>{ wind} km/h</h2>
+                <p>{weather}</p>
             </div>
             </div>
         </div>
@@ -51,3 +47,4 @@ const Card: React.FC<CenterProps> = ({day, time, temp, weather}) => {
 }
 
 export default Card
+

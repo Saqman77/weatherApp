@@ -43,7 +43,7 @@ export interface WeatherResponse {
   }
   
   export interface Wind {
-    speed: number;
+    speed: string | number;
     deg: number;
     gust: number;
   }
@@ -80,13 +80,17 @@ export interface WeatherResponse {
     };
     weather: {
       description: string;
+      icon: string;
     }[];
-    wind: string | number | undefined;
+    wind: any;
+    
+
   }
   
-  export interface MainProps {
-    error: string | null;
-    loading: boolean;
-    refetch: () => Promise<void>;
-    data: any;
-  }
+  // export interface MainProps {
+  //   error: string | null;
+  //   loading: boolean;
+  //   refetch: () => Promise<void>;
+  //   data: any;
+
+  // }

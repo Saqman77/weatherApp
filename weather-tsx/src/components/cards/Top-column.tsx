@@ -1,10 +1,20 @@
 import { useEffect } from 'react';
 import Card from './Card';
+import Card2 from './Card';
 import './cards.scss';
 import { useTheme } from '../../utils/Theme-context';
-import { MainProps, WeatherItem } from '../../weather-data';
+import {  WeatherItem } from '../../weather-data';
+import { iconMap } from '../../utils/icon';
 
-const TopColumn = ({ data, error }: MainProps): JSX.Element => {
+interface Props {
+  data: WeatherItem[] | null;
+  error: string | null;
+  loading: boolean;
+  refetch: () => Promise<void>;
+}
+
+
+const TopColumn = ({ data, error, loading,  }: Props): JSX.Element => {
   const { lightTheme } = useTheme();
 
   const formatDateTime = (dt_txt: string) => {
@@ -63,18 +73,33 @@ const TopColumn = ({ data, error }: MainProps): JSX.Element => {
       {data && data.length > 0 ? (
         data.map((item: WeatherItem) => {
           const { day, time } = formatDateTime(item.dt_txt);
+          const icon = iconMap[item.weather[0].icon];
           return (
             <Card
               key={item.dt}
               day={day}
               time={time}
               temp={item.main.temp.toString()}
+              wind={item.wind}
               weather={item.weather[0].description}
+              speed={item.wind.speed.toString()}
+              icon={icon}
             />
           );
         })
       ) : (
-        <p>No weather data available.</p>
+        Array.from({ length: 8 }).map((_, index) => (
+          <Card2
+            key={index}
+            day="N/A"
+            time="N/A"
+            temp="N/A"
+            weather="N/A"
+            wind='N/A'
+            speed='N/A'
+            icon={iconMap['01d']}
+          />
+        ))
       )}
     </div>
   );

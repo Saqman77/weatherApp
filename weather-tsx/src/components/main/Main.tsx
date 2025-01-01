@@ -48,17 +48,17 @@ const Main = ({ data, loading, refetch,
       <div className="bottom-wrapper">
         <LeftColumn 
         {...data}
-          wind={data?.wind?.speed.toString()}
-          humidity={data?.main?.humidity.toString()}
-          visibility={data?.visibility.toString()}
-          airPressure={data?.main?.pressure.toString()}
+          wind={!loading?(data?.wind?.speed.toString()):('loading....')}
+          humidity={!loading?(data?.main?.humidity.toString()):('loading....')}
+          visibility={!loading?(data?.visibility.toString()):('loading....')}
+          airPressure={!loading?(data?.main?.pressure.toString()):('loading....')}
         />
         <Center 
-        weather={data?.weather[0].description}
-        day={formatDateTime(data?.dt_txt).day}
-        temp={data?.main?.temp.toString()}
-        image={data?.weather[0].icon}
-        time={formatDateTime(data?.dt_txt).time}
+        weather={!loading?(data?.weather[0].description):('loading....')}
+        day={!loading?(formatDateTime(data?.dt_txt).day):('loading....')}
+        temp={!loading?(data?.main?.temp.toString()):('loading....')}
+        image={!loading?(data?.weather[0].icon):('loading....')}
+        time={!loading?(formatDateTime(data?.dt_txt).time):('loading....')}
         />
         <RightColumn />
       </div>

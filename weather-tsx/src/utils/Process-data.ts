@@ -25,6 +25,8 @@ export const processWeatherData = (weatherData: WeatherResponse) => {
   const nextDaysData = Object.entries(forecastByDay).map(([date, entries]) => {
     // Choose an entry around noon (12:00) or average values
     const midDayEntry = entries.find((entry) => entry.dt_txt.includes("12:00:00")) || entries[0];
+
+    
     return { date, ...midDayEntry };
   });
 

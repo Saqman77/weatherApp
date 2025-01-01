@@ -6,7 +6,7 @@ import Main from './components/main/Main'
 import { useTheme } from './utils/Theme-context'
 import { useWeatherData } from './utils/UseWeatherData'
 import { processWeatherData } from './utils/Process-data'
-import { WeatherItem } from './weather-data'
+
 
 const App = () => {
 
@@ -31,6 +31,7 @@ const App = () => {
         error={error}
         loading={loading}
         refetch={refetch}
+        
       />
       <Main
         data={currentDayData}
