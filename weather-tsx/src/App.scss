@@ -3,6 +3,12 @@
   height: 100%;
   min-height: 100vh;
   padding: 30px;
-  background-color: #212022;
-  color: #E5E5E5;
+  // background-color: #212022;
+  // color: #E5E5E5;
+}
+@media screen and (max-width: 500px){
+  .App{
+    padding: 15px;
+  }
+  
 }

@@ -1,8 +1,12 @@
 import { useEffect } from 'react';
 import Card from './Card'
 import './cards.scss'
+import { useTheme } from '../../utils/Theme-context';
 
 const TopColumn = () => {
+
+
+  const { lightTheme } = useTheme()
 
   // get height of Cardcontainer  and set it to the height of the column
   useEffect(() => {
@@ -24,7 +28,12 @@ const TopColumn = () => {
 
 
   return (
-    <div className='column'>
+    <div className='column'
+    style={lightTheme ? {backgroundColor: '#ccc', color: 'black', boxShadow: `rgba(0, 0, 0, 0.15) 6px 6px 10px -1px,
+      rgba(255, 255, 255, 0.7) -6px -6px 10px -1px,
+       inset 0 3px 10px 0 rgb(0 0 0 / 55%)
+   `,} : {backgroundColor: '#36363a', color: 'white'}}
+    >
       <Card/>
       <Card/>
       <Card/>

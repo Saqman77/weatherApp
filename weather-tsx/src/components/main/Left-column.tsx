@@ -1,6 +1,9 @@
 import React from 'react'
+import { useTheme } from '../../utils/Theme-context'
 
 const LeftColumn = () => {
+
+    const { lightTheme } = useTheme()
 
     const data = {
         wind: '12km/h',
@@ -11,7 +14,9 @@ const LeftColumn = () => {
 
 
   return (
-    <div className='left-column'>
+    <div className='left-column'
+    style={lightTheme ? {backgroundColor: '#ccc', color: 'black', boxShadow:'rgb(0 0 0 / 19%) 1px 1px 15px 0px inset, rgb(0 0 0 / 40%) 3px 3px 18px 0px'} : {backgroundColor: '#36363a', color: 'white', boxShadow:'box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);' }}
+    >
         <div className="leftContent wind">
             <h2>Wind status:</h2>
             <p>{data.wind}</p>
