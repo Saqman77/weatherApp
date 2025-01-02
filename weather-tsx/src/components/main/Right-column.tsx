@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { useTheme } from '../../utils/Theme-context'
 
 const RightColumn = () => {

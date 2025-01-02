@@ -60,6 +60,7 @@ const TopColumn = ({ data, error, loading,  }: Props): JSX.Element => {
   }
 
   return (
+    <>
     <div
       className="column"
       style={
@@ -111,6 +112,7 @@ const TopColumn = ({ data, error, loading,  }: Props): JSX.Element => {
         ))
       )}
     </div>
+    </>
   );
 };
 
