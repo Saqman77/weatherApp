@@ -1,6 +1,6 @@
 import { iconMap } from '../../utils/icon'
 import { useTheme } from '../../utils/Theme-context'
-import {  MainWeatherData, WeatherEntry, WeatherResponse, Wind } from '../../weather-data'
+import {   WeatherEntry, } from '../../weather-data'
 import Center from './Center'
 import LeftColumn from './Left-column'
 import './main.scss'
@@ -15,12 +15,11 @@ type MainProps = {
 }
 
 
-const Main = ({ data, loading, time, refetch,
-  error, ...props
+const Main = ({ data, loading, time, 
  }: MainProps): JSX.Element => {
 
   const formatTo12Hour = (time24: string): string => {
-    const [hours, minutes, seconds] = time24.split(":").map(Number);
+    const [hours, minutes, ] = time24.split(":").map(Number);
     const period = hours >= 12 ? " PM" : " AM";
     const hours12 = hours % 12 || 12; // Convert 0 to 12 for midnight
     return `${hours12}:${minutes.toString().padStart(2, "0")}${period}`;

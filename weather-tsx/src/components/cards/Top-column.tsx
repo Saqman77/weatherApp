@@ -21,7 +21,7 @@ interface Props {
 }
 
 
-const TopColumn = ({ data, error, loading,  }: Props): JSX.Element => {
+const TopColumn = ({ data, error,   }: Props): JSX.Element => {
   const { lightTheme } = useTheme();
 
   const formatDateTime = (dt_txt: string) => {

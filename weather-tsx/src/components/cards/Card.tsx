@@ -21,8 +21,8 @@ const Card: React.FC<CenterProps> = ({ day, time, temp, weather, icon, wind }) =
   const { lightTheme } = useTheme();
 
   const windSpeed = typeof wind === 'object' && 'speed' in wind ? wind.speed : "N/A";
-  const windGust = typeof wind === 'object' && 'gust' in wind ? wind.gust : "N/A";
-  const windDeg = typeof wind === 'object' && 'deg' in wind ? wind.deg : "N/A";
+  // const windGust = typeof wind === 'object' && 'gust' in wind ? wind.gust : "N/A";
+  // const windDeg = typeof wind === 'object' && 'deg' in wind ? wind.deg : "N/A";
 
   return (
     <div className="Cardcontainer">
