@@ -5,7 +5,7 @@ interface CenterProps {
     weather: string;
     temp: string;
     image: string;
-    time: string;
+    time: string | undefined;
 }
 
 const Center: React.FC<CenterProps> = ({ day, weather, temp, image, time }) => {
@@ -22,10 +22,10 @@ const Center: React.FC<CenterProps> = ({ day, weather, temp, image, time }) => {
     <div className="center-container">
         <div className='center'>
             <div className="pill day">
-                <h2>{data.day}</h2>
+                <h2>{data.day ? (data.day): (<p>current day</p>)}</h2>
             </div>
             <div className="pill time">
-                <h2>{data.time}</h2>
+            <h2>{data.time?  (data.time) : (<p>current time</p>)}</h2>
             </div>
             <div className="pill center-temp">
                 <p>{data.temp}°C </p>
@@ -33,7 +33,7 @@ const Center: React.FC<CenterProps> = ({ day, weather, temp, image, time }) => {
         </div>
         <div className="weather-icon">
             <div className="center-icon">
-                    <img src={image} alt="icon" className='c-icon' />
+                    <img src={image? (image):(def)} alt="icon" className='c-icon' />
             </div>
             <div className="icon-day">
                 <h2>{data.weather}</h2>

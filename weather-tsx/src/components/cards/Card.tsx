@@ -35,6 +35,8 @@ const Card: React.FC<CenterProps> = ({ day, time, temp, weather, icon, wind }) =
                 color: 'black',
                 boxShadow:
                   'inset 3px 2px 15px 2px rgb(0 0 0 / 1%), 9px 7px 18px 0 rgb(0 0 0 / 32%)',
+                  outline: '2px solid orange',
+                  outlineOffset: '1px',
               }
             : {
                 backgroundColor: '#36363a',

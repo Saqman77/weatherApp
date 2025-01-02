@@ -14,17 +14,33 @@ const App = () => {
   const { weatherData, error, loading, refetch } = useWeatherData(city);
   const processedData = weatherData ? processWeatherData(weatherData) : null;
   const nextDaysData: any = processedData?.nextDaysData || [];
-  const currentDayData = processedData?.currentDayData[0];
-    useEffect(() => {
-      console.log(processedData?.currentDayData[0]);
-    }, [processedData]);
+  const currentDayData = processedData?.currentDayData.data[0];
+  const time = processedData?.currentDayData.time;
   const { lightTheme } = useTheme()
+
+
+  
+
+    useEffect(() => {
+      console.log(weatherData, processedData);
+    }, []);
+  
 
   return (
     <div className='App'
     {...processedData}
     style={lightTheme ? {backgroundColor: 'rgb(217 217 217)', color: 'black'} : {backgroundColor: '#212022', color: 'white'}}
     >
+      <div className="main-wrapper"
+      style={{
+        width: '100%',
+        maxWidth: '1400px',
+        height: window.innerWidth < 1200? 'max-content':'100vh',
+        maxHeight: '100%',
+        padding: window.innerWidth > 500? '30px' : '15px',
+      }}
+      >
+
       <Header />
       <TopColumn
         data={nextDaysData}
@@ -43,7 +59,9 @@ const App = () => {
         loading={loading}
         refetch={refetch}
         error={error}
+        time={!loading?(time):('loading....')}
       />
+    </div>
     </div>
   )
 }

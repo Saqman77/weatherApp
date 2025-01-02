@@ -70,6 +70,8 @@ const TopColumn = ({ data, error, loading,  }: Props): JSX.Element => {
               boxShadow: `rgba(0, 0, 0, 0.15) 6px 6px 10px -1px,
                           rgba(255, 255, 255, 0.7) -6px -6px 10px -1px,
                           inset 0 3px 10px 0 rgb(0 0 0 / 55%)`,
+              outline: '2px solid orange',
+              outlineOffset: '-2px',
             }
           : {
               backgroundColor: '#36363a',
@@ -98,12 +100,12 @@ const TopColumn = ({ data, error, loading,  }: Props): JSX.Element => {
         Array.from({ length: 8 }).map((_, index) => (
           <Card2
             key={index}
-            day="N/A"
-            time="N/A"
-            temp="N/A"
-            weather="N/A"
-            wind={{ speed: 'N/A', gust: 'N/A', deg: 'N/A' }}
-            speed='N/A'
+            day="...loading"
+            time=""
+            temp=""
+            weather=""
+            wind={{ speed: '', gust: '', deg: '' }}
+            speed=''
             icon={iconMap['01d']}
           />
         ))

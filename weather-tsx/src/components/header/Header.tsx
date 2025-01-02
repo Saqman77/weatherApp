@@ -6,20 +6,29 @@ import { useCity, useTheme } from '../../utils/Theme-context'
 import { useRef } from 'react'
 const Header = () => {
   const {lightTheme, setLightTheme} = useTheme();
-
   const { city, setCity } = useCity();
-
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSearch = () => {
     if (inputRef.current) {
       setCity(inputRef.current.value); // Set the city to the state using input's value
     }
-    // resert search input
+    // reset search input
     if (inputRef.current) {
       inputRef.current.value = '';
     }
   };
+
+  const enterPressed = (event: any) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+
+      if (inputRef.current) {
+        inputRef.current.value = '';
+      }
+    }
+
+  }
 
   const toggleTheme = () => {
     setLightTheme(!lightTheme)};
@@ -43,14 +52,15 @@ const Header = () => {
         <input ref={inputRef} type="text" placeholder="Search for city" className='search' 
         style={lightTheme?{boxShadow:'-5px -3px 6px 0 rgb(255 255 255), inset 2px 3px 4px 1px rgb(0 0 0 / 28%), 2px 3px 10px 0 rgb(0 0 0 / 58%)'}
         :{boxShadow:'inset 0 3px 5px 0 rgb(0 0 0), -2px -3px 4px 1px rgb(231 228 228 / 29%)'}}
+        onKeyDown={enterPressed}
         />
         <button 
         onClick={handleSearch}
         style={{
           boxShadow: lightTheme ? '-5px -3px 6px 0 rgb(255 255 255), 2px 3px 10px 0 rgb(0 0 0 / 58%)' 
           : '1px 2px 10px 0 rgba(0, 0, 0, 0.5), 0 0 10px 0 rgba(0, 0, 0, 0.4),  -2px -3px 4px 1px rgb(231 228 228 / 29%)',
-          width: '40px',
-          height: '40px',
+          width: '20px',
+          height: '20px',
           // backgroundColor: 'transparent',
         }}
         ><img 
@@ -60,6 +70,9 @@ const Header = () => {
           // zIndex: 1,
         }}
         src={searchIcon} alt="" className='searchImg'/></button>
+      </div>
+      <div className="city-name">
+        <h2 className='city-text'>{city}</h2>
       </div>
       <div className="toggle">
         <label className="switch">

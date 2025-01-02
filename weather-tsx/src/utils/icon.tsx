@@ -1,5 +1,5 @@
 import sunLight from '../assets/icons/01.sun-dark.svg';
-import fullMoonLight from '../assets/icons/08.full-moon-dark.svg';
+import fullMoonLight from '../assets/icons/19.full-moon-dark.svg';
 import partialCloudyLight from '../assets/icons/05.partial-cloudy-dark.svg';
 import cloudyNightLight from '../assets/icons/16.cloudy-night-dark.svg';
 import cloudLight from '../assets/icons/15.cloud-dark.svg';
