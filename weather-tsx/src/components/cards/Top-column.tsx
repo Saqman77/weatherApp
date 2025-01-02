@@ -97,6 +97,7 @@ const TopColumn = ({ data, error, loading,  }: Props): JSX.Element => {
       ) : (
         Array.from({ length: 8 }).map((_, index) => (
           <Card2
+          
             key={index}
             day="N/A"
             time="N/A"

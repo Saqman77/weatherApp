@@ -9,8 +9,8 @@ import { useRef, useState } from 'react'
 const Header = () => {
 
   const {lightTheme, setLightTheme} = useTheme();
-  const { city, setCity } = useCity();
-  const inputRef = useRef<HTMLInputElement>(null);
+  const { city } = useCity();
+  const inputRef = useRef<HTMLInputElement>(0);
   const [suggestions, setSuggestions] = useState<string[]>([]); 
   const [loading, setLoading] = useState<boolean>(false); 
   const [debounceTimer, setDebounceTimer] = useState<ReturnType<typeof setTimeout> | null>(null);
@@ -53,22 +53,10 @@ const Header = () => {
     setDebounceTimer(timer);
   };
 
-  // Handle city selection from the suggestions list
-  const handleCitySelect = (selectedCity: string) => {
-    setCity(selectedCity); // Set selected city to the state
-    setSuggestions([]); // Clear suggestions
-    // Optionally, fetch additional data like weather for the selected city
-  };
 
 
   const handleSearch = () => {
-    if (inputRef.current) {
-      setCity(inputRef.current.value); // Set the city to the state using input's value
-    }
-    // resert search input
-    // if (inputRef.current) {
-    //   inputRef.current.value = '';
-    // }
+      useCity(inputRef.current.value)
   };
 
   const toggleTheme = () => {
@@ -92,7 +80,6 @@ const Header = () => {
       <div className="search-wrapper">
         <input 
         ref={inputRef}
-        value={city}
         onChange={handleInputChange}
         type="text" placeholder="Search for city" className='search' 
         style={lightTheme?{boxShadow:'-5px -3px 6px 0 rgb(255 255 255), inset 2px 3px 4px 1px rgb(0 0 0 / 28%), 2px 3px 10px 0 rgb(0 0 0 / 58%)'}
@@ -114,17 +101,8 @@ const Header = () => {
           // zIndex: 1,
         }}
         src={searchIcon} alt="" className='searchImg'/></button>
-        {loading && <p>Loading...</p>}
       </div>
-      {suggestions.length > 0 && !loading && (
-        <ul className="suggestions-list">
-          {suggestions.map((suggestion, index) => (
-            <li key={index} onClick={() => handleCitySelect(suggestion)}>
-              {suggestion}
-            </li>
-          ))}
-        </ul>
-      )}
+
       <div className="toggle">
         <label className="switch">
           <input type="checkbox" onClick={toggleTheme} />
