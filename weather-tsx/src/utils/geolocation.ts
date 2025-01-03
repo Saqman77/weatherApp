@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useCity } from "./Theme-context";
+
 
 // Define the weather data types based on OpenWeather API response
 interface Weather {
@@ -25,11 +27,11 @@ interface WeatherResponse {
 
 /**
  * Custom hook to fetch the user's geolocation and weather data based on the geolocation.
- * @returns The user's latitude, longitude, weather data, error message, and loading state.
+ * Updates the city in the CityContext.
+ * @returns The weather data, error message, and loading state.
  */
 export const useGeolocationAndWeather = () => {
-  const [latitude, setLatitude] = useState<number | null>(null);
-  const [longitude, setLongitude] = useState<number | null>(null);
+  const { setCity } = useCity(); // Use the CityContext to manage city state
   const [weatherData, setWeatherData] = useState<WeatherResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -63,6 +65,7 @@ export const useGeolocationAndWeather = () => {
         throw new Error("Failed to fetch weather data");
       }
       const data: WeatherResponse = await response.json();
+      setCity(data.name); // Update the city in the CityContext
       setWeatherData(data);
       setLoading(false);
     } catch (err) {
@@ -79,8 +82,6 @@ export const useGeolocationAndWeather = () => {
 
       try {
         const { latitude, longitude } = await getLocation();
-        setLatitude(latitude);
-        setLongitude(longitude);
         await fetchWeather(latitude, longitude);
       } catch (err) {
         setError("Error retrieving location or weather data.");
@@ -91,5 +92,5 @@ export const useGeolocationAndWeather = () => {
     fetchData(); // Initiates the data fetching when the hook is first used
   }, []); // Empty dependency array ensures this effect runs once on mount
 
-  return { latitude, longitude, weatherData, error, loading };
+  return { weatherData, error, loading };
 };
