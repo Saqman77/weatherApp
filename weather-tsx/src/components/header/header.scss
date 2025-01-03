@@ -25,12 +25,39 @@
     outline: none;
     transition: all 0.2s ease;
     box-shadow: inset 0 3px 10px 0 rgb(0 0 0), -2px -3px 4px 1px rgb(231 228 228 / 29%);
+    position: relative;
+}
+
+.suggestions{
+    position: absolute;
+    top: 70px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5), 0 0 10px 0 rgba(0, 0, 0, 0.4),  -2px -3px 4px 1px rgb(231 228 228 / 29%);
+    z-index: 100;
+    // padding: 10px;
+    // max-height: 200px;
+    overflow-y: auto;
+    color: #000;
+    width: 200px;
+}
+
+.suggestion-item{
+    padding: 5px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    border-bottom: 1px solid #000000;
+}
+
+.suggestion-item:hover{
+    background: #888888;
 }
 
 .city-text{
     font-size: 1.5rem;
     font-weight: 700;
     text-transform: uppercase;
+    padding: 2px 5px;
 }
 
 @media screen and (max-width: 600px){

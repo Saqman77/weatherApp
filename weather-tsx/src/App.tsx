@@ -11,7 +11,7 @@ import { useGeolocationAndWeather } from './utils/geolocation';
 
 const App = () => {
   const { city, setCity } = useCity();
-  const { weatherData: geoWeatherData, error: geoError, loading: geoLoading } = useGeolocationAndWeather(); // Use geolocation hook
+  const { weatherData: geoWeatherData } = useGeolocationAndWeather(); // Use geolocation hook
   const { weatherData, error, loading, refetch } = useWeatherData(city);
   const processedData = weatherData ? processWeatherData(weatherData) : null;
   const nextDaysData: any = processedData?.nextDaysData || [];
@@ -69,6 +69,7 @@ const App = () => {
           refetch={refetch}
           error={error}
           time={!loading ? time : 'loading....'}
+          city={city}
         />
       </div>
     </div>

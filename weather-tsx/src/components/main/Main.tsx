@@ -12,10 +12,11 @@ type MainProps = {
   refetch: () => Promise<void>;
   error: string | null;
   time: string | undefined;
+  city: string;
 }
 
 
-const Main = ({ data, loading, time, 
+const Main = ({ data, loading, time, city
  }: MainProps): JSX.Element => {
 
   const formatTo12Hour = (time24: string): string => {
@@ -69,7 +70,9 @@ const Main = ({ data, loading, time,
         image={!loading?(iconMap[data?.weather[0].icon]):('loading....')}
         time={!loading && time ? formatTo12Hour(time) : 'loading....'}
         />
-        <RightColumn />
+        <RightColumn 
+        city={!loading?(city):('loading....')}
+        />
       </div>
     </div>
   )
